@@ -1,0 +1,36 @@
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8076/eureka
+#    register-with-eureka: true
+#    fetch-registry: true
+
+server:
+  port: 8086
+
+spring:
+  application:
+    name: "api-gateway"
+  cloud:
+    gateway:
+      routes:
+        - id: LoginService
+          uri: http://localhost:8080/
+          predicates:
+          - Path=/api/user/**
+        - id: RegistrationService
+          uri: http://localhost:8082/
+          predicates:
+          - Path=/api/v1/**
+        - id: RecommendationService
+          uri: http://localhost:8083/
+          predicates:
+          - Path=/recommend/**
+        - id: ReviewManagementService
+          uri: http://localhost:8084/
+          predicates:
+          - Path=/review/**
+        - id: ProductManagementService
+          uri: http://localhost:8081/
+          predicates:
+          - Path=/product/**

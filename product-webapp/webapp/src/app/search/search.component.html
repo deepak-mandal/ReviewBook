@@ -1,0 +1,20 @@
+<div class="search-form-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select [(value)]="selectedCategory">
+      <mat-option [value]="option.toLowerCase()" *ngFor="let option of categoryOptions">
+        {{ option | titlecase }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="search-field" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="searchValue">
+    <button *ngIf="searchValue" matSuffix mat-icon-button (click)="searchValue=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <a [routerLink]="['/search', selectedCategory.toLowerCase(), searchValue.toLowerCase()]">
+    <mat-icon>search</mat-icon>
+  </a>
+</div>

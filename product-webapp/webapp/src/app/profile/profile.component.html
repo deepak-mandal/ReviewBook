@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit profile</title>
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <!-- <header>
+        <nav class="navbar " style="background-color: #0a4275;">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <div class="navbar-brand" id="book">ReviewBook</div>
+              </div>
+              <div class="nav navbar-nav navbar-right">
+                <button mdbRipple rippleColor="dark" type="button" class="btn btn-outline-info btn-rounded" [routerLink]="['/home']">
+                Home
+                </button>
+              </div>
+            </div>
+          </nav>
+        </header>  -->
+    
+    <main class="profile">
+      <h1 class="profile-title">Edit Profile:</h1>
+    <div class="container">
+         
+        <div class="row">
+          <div class="col-md-3">
+            <div class="text-center">
+            </div>
+          </div>
+          
+          <div class="col-md-9 personal-info">
+           
+            <h3 >Personal info:</h3>
+          
+            
+            <div class="form-horizontal" role="form" [formGroup]="editProfile" >
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">UserName:</label>
+                    <div class="col-md-8">
+                      <input disabled class="form-control" type="text" formControlName="username">
+                    </div>
+                  </div>
+             
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Password:</label>
+                <div class="col-lg-8">
+                  <input class="form-control" [class.is-invalid]="editProfile.get('password').invalid
+                  && editProfile.get('password').touched" type="text" formControlName="password">
+                  <div *ngIf="editProfile.get('password').invalid
+                        && editProfile.get('password').touched">
+                        <small *ngIf="editProfile.get('password').errors?.required" class="text-danger">password required</small>
+                                              
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">EmailId:</label>
+                <div class="col-lg-8">
+                  <input disabled class="form-control" type="email" formControlName="emailId">
+                </div>
+              </div>
+             
+              
+              <div *ngIf="editProfile.value.role=='Product owner'">
+              <div class="form-group">
+                <label class="col-md-3 control-label">OrganisationName:</label>
+                <div class="col-md-8">
+                  <input class="form-control" [class.is-invalid]="editProfile.get('password').invalid
+                  && editProfile.get('password').touched" type="text" formControlName="organisationName">
+                  <div *ngIf="editProfile.get('organisationName').invalid
+                        && editProfile.get('organisationName').touched">
+                        <small *ngIf="editProfile.get('organisationName').errors?.required" class="text-danger">organisationName required</small>
+                             
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">GstIN:</label>
+                <div class="col-md-8">
+                  <input class="form-control" [class.is-invalid]="editProfile.get('password').invalid
+                  && editProfile.get('password').touched" type="text" formControlName="gstIN">
+                  <div *ngIf="editProfile.get('gstIN').invalid
+                  && (editProfile.get('gstIN').touched || editProfile.get('emailId').dirty )">
+                  <small *ngIf="editProfile.get('gstIN').errors?.required" class="text-danger">gstIN required</small>
+                  <small *ngIf="editProfile.get('gstIN').errors?.pattern" class="text-danger">Enter a valid gst id</small>
+                  
+                  
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Location:</label>
+                <div class="col-md-8">
+                  <input class="form-control" [class.is-invalid]="editProfile.get('password').invalid
+                  && editProfile.get('password').touched" type="text" formControlName="location">
+                  <div *ngIf="editProfile.get('location').invalid
+                        && (editProfile.get('location').touched || editProfile.get('location').dirty )">
+                        <small *ngIf="editProfile.get('location').errors?.required" class="text-danger">location required</small>    
+                        
+                  </div>
+                </div>
+              </div>
+              
+              </div>
+              <div class="form-group" id="wrapper">
+                <div class="col-md-8"> 
+                  <button class="btn btn-primary" Style="margin-right: 10px;" (click)="updateProfile()" > Save Changes</button>
+                  <button type="button" *ngIf="editProfile.value.role=='Product owner'" class="btn btn-info" [routerLink]="['/products']">My Products</button>
+                </div>
+              </div>
+            </div> 
+          </div>
+      </div>
+    </div>
+    
+</main>
+
+<section class="">
+   
+    <footer class="text-center text-white" style="background-color: #0a4275;">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-white" href="https://ReviewBook.com/">ReviewBook.com</a>
+      </div>
+      
+    </footer>
+   
+  </section>
+
+    
+
+</body>
+</html>

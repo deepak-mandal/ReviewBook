@@ -1,0 +1,55 @@
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product > mat-card > img{
+    /* object-fit: contain; */
+    height: 200px;
+
+}
+.product > mat-card{
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    width: 300px;
+    margin: 20px;
+    /* background-color: rgb(59, 148, 221); */
+    background-color: rgb(116, 188, 255);
+    /* align-items: center; */
+}
+
+mat-card > p{
+    text-align: center;
+}
+
+.rating{
+    margin-top: 20px;
+    height: 30px;
+    text-align: center;
+}
+mat-icon{
+    transform: scale(1.5);
+    margin: 5px;
+}
+.mat-primary {
+    color:gold;
+   }
+
+.category{
+    margin: 20px;
+    padding: 5px;
+}
+
+mat-card:hover{
+    cursor: pointer;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+                0 1px 1px 0 rgba(0,0,0,1), 
+                0 1px 3px 0 rgba(0,0,0,1);
+}
+
+
+
+
+

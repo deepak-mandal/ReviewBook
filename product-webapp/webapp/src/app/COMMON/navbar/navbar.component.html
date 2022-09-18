@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <a class="logo" mat-flat-button routerLink="." color="primary" disableRipple="true">ReviewBook</a>
+    <div class="right">
+      <button mat-flat-button color="primary">My Profile</button>
+      <button mat-flat-button color="primary">Favourites</button>
+      <button mat-flat-button color="primary">Log out</button>
+    </div>
+  <button class="menu-icon" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/profile']">My Profile</button>
+    <button mat-menu-item>Favourites</button>
+    <button mat-menu-item>Log out</button>
+  </mat-menu>
+  </mat-toolbar>

@@ -1,0 +1,92 @@
+<div class="container"><br>
+  <h2>Account: {{username | titlecase}}</h2>
+  <div class="products">
+    <div class="product" *ngFor="let user of allProduct">
+      <mat-card *ngIf="user.username==username">
+        <p class="heading"><strong>{{user.productName | titlecase}}</strong></p>
+        <p class="heading">{{user.category | titlecase}}</p>
+        <img class="card-img-top" src="data:image/png;base64,{{ user.imageByte }}" alt="product image" />
+        <p class="details">product Description: {{user.description }}</p>
+        <p class="details">Product Verification Id: {{user.verificationId}}</p>
+        <div class="details">Product Specifications: <span class="specs">
+            <ul>
+              <li *ngFor="let specs of user.specs">{{specs}}</li>
+            </ul>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button type="button" class="btn btn-success btn-block mx-1" (click)="editProduct(user)">Update
+              Product</button>
+            <button type="button" class="btn btn-secondary btn-block mx-1" (click)="deleteProduct(user)">Delete</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+  <br>
+
+  <!-- <h1 *ngIf="!isEdit">Please fill data to add new records</h1> -->
+  <h1 *ngIf="isEdit">Please edit data to update the existing records</h1>
+
+  <form [formGroup]="reactiveForm" *ngIf="isEdit">
+    <hr>
+    <div>
+      <div class="mb-3">
+        <label for="productName" class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="productName" formControlName="productName">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Product Description</label>
+        <textarea class="form-control" name="description" formControlName="description"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="verificationId" class="form-label">Verification Id</label>
+        <input type="text" class="form-control" name="verificationId" formControlName="verificationId">
+      </div>
+
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select id="inputState" class="form-control" formControlName="category">
+          <option *ngFor="let category of categories" [value]='category'>{{ category }}</option>
+        </select>
+      </div>
+
+      <div class=" form-label fileInputProfileWrap">
+        <label for="productImage" class="form-label">Product Image</label><br>
+        <input type="file" accept="image/*" (change)="fileChangeEvent($event)" class="fileInputProfile" />
+      </div>
+
+
+      <div class="row" formArrayName="specs">
+        <div class="col">
+          <button type="button" class="btn btn-outline-info btn-sm mb-2" (click)="onAddSpecifications()">Add
+            Specification</button>
+          <div *ngFor="let specsControl of reactiveForm.get('specs')['controls']; let i = index">
+            <div class="row">
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Specification . . ." [formControlName]="i">
+                <div class="input-group-prepend">
+                  <button type="button" class="input-group-text" style="background-color:tomato; color: white;"
+                    (click)="onDeleteSpecifications(i)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <button (click)="submitData()" color="primary" class="btn btn-primary" *ngIf="!isEdit">Submit</button>
+      <button type="button" class="btn btn-info" *ngIf="isEdit"
+        (click)="updateProduct(reactiveForm.value)">Update</button>
+
+    </div>
+  </form>
+
+</div>
+
+
+

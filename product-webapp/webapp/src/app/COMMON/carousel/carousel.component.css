@@ -1,0 +1,14 @@
+#carouselExampleControls{
+    height: 500px;
+    background-color: rgb(191, 199, 207);
+}
+
+img{
+    object-fit: contain;
+    height: 500px;
+}
+
+.category{
+    background-color: rgb(144, 175, 202);
+}
+

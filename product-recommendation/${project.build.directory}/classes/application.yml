@@ -1,0 +1,18 @@
+spring:
+  neo4j:
+    uri: neo4j://localhost:7687
+    authentication:
+      username: neo4j
+      password: admin
+
+server:
+  port: 8083
+
+rabbit:
+  QUEUE_NAME: myqueue
+  EXCHANGE_NAME: myexchange
+  ROUTING_KEY: myroutingkey
+
+logging:
+  level:
+    com.stackroute.productrecommendation: debug
