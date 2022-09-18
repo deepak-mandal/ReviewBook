@@ -34,6 +34,7 @@ public class UserRegistrationServiceApp
     public static void main(String[] args) {
         SpringApplication.run(UserRegistrationServiceApp.class, args);
         System.out.println("Producer is running");
+        System.out.println("UserRegistration started");
     }
 
     @Bean

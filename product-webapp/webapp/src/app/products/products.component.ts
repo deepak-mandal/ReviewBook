@@ -204,7 +204,7 @@ export class ProductsComponent implements OnInit {
         (response) => {
           console.log(response);
           console.log("updated successfully");
-          alert("updated successfully");
+          // alert("updated successfully");
           window.location.reload();
         },
         (err) => console.log('Error Occured during saving: ' + err.message)

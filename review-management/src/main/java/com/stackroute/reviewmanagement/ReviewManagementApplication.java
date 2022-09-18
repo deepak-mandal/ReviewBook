@@ -13,7 +13,7 @@ public class ReviewManagementApplication {
         SpringApplication.run(ReviewManagementApplication.class, args);
 
 
-        System.out.println("Review service is running..");
+        System.out.println("Review microservice started");
     }
 
 }

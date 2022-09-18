@@ -18,6 +18,7 @@ public class LoginServiceApplication {
         SpringApplication.run(LoginServiceApplication.class, args);
 
         log.info("Working on LoginService with port no 8080..");
+        System.out.println("LoginService started");
 
     }
 

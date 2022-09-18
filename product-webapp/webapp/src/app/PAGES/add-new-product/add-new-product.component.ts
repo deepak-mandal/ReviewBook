@@ -66,7 +66,10 @@ export class AddNewProductComponent implements OnInit {
       error => console.log("Some error occured.! " + error)
     )
 
-    this.router.navigate(['']);
+    // this.router.navigate(['/home']);
+    this.router.navigate(['/home']).then(() => {
+      window.location.reload();
+    });
 
   }
 

@@ -12,7 +12,7 @@ public class ProductManagementApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProductManagementApplication.class, args);
 
-        System.out.println("Products is running on 8081..");
+        System.out.println("Products stated on 8081..");
 
     }
 }

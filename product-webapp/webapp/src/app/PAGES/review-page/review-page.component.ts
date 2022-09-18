@@ -148,6 +148,9 @@ export class ReviewPageComponent implements OnInit {
     .sendreview(this.reviewobj)
     .subscribe((response) => {
       console.log(response);
+      // this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      // });
     }
     );
 }

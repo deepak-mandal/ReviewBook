@@ -14,7 +14,7 @@ public class EurekaServerApplication {
 		SpringApplication.run(EurekaServerApplication.class, args);
 
 		log.info("Eureka Server is running on port no: 8761 ...");
-
+        System.out.println("Eureka started");
 	}
 
 }

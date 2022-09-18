@@ -17,7 +17,7 @@ public class ProductRecommendationApplication {
         log.debug("Started product-recommendation service at port {}", ctx.getEnvironment().getProperty("server.port"));
 
 
-        System.out.println("Recommendation is running..");
+        System.out.println("Recommendation started");
 
     }
 
