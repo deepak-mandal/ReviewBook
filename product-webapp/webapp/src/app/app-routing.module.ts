@@ -1,24 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
-import { HomePageComponent } from './PAGES/home-page/home-page.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { SearchResultsComponent } from './search-results/search-results.component';
-import { SearchComponent } from './search/search.component';
-import { AddNewProductComponent } from './PAGES/add-new-product/add-new-product.component';
-import { ProductsComponent } from './products/products.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ReviewPageComponent } from './PAGES/review-page/review-page.component';
-import { ProductPageComponent } from './product-page/product-page.component';
+import { LoginComponent } from './product-features/user-management/components/login/login.component';
+import { RegistrationComponent } from './product-features/user-management/components/registration/registration.component';
+import { AddNewProductComponent } from './product-features/product-management/components/add-new-product/add-new-product.component';
+import { ManageProductComponent } from './product-features/product-management/components/manage-product/manage-product.component';
+import { DashboardComponent } from './product-features/reviewbook-home/components/dashboard/dashboard.component';
+import { ReviewsComponent } from './product-features/review-management/components/reviews/reviews.component';
+import { AboutReviewbookPlatformComponent } from './product-features/reviewbook-home/components/about-reviewbook-platform/about-reviewbook-platform.component';
+import { ManageProfileComponent } from './product-features/user-management/components/manage-profile/manage-profile.component';
 
 
-//for component
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: AboutReviewbookPlatformComponent,
   },
   {
     path: 'login',
@@ -28,45 +23,29 @@ const routes: Routes = [
     path: 'register',
     component: RegistrationComponent,
   },
-  /*{
-    path: 'home',
-    component: HomeComponent,
-  },*/
   {
-    path: 'home',
-    component: HomePageComponent,
+    path: 'dashboard',
+    component: DashboardComponent,
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    component: ManageProfileComponent,
   },
   {
     path: 'products',
-    component: ProductsComponent,
+    component: ManageProductComponent,
   },
   {
-    path: 'product',
-    component: ProductPageComponent,
-  },
-  {
-    path: 'landing',
-    component: LandingComponent,
-  },
-  {
-    path: 'search/:selectedCategory/:userQuery',
-    component: SearchResultsComponent
-  },
-  {
-    path: 'searchzone',
-    component: SearchComponent
+    path: 'about-reviewbook-platform',
+    component: AboutReviewbookPlatformComponent,
   },
   {
     path: 'add-new-product',
     component: AddNewProductComponent
   },
- {
-    path:'review/:productId',
-    component:ReviewPageComponent
+  {
+    path: 'review/:productId',
+    component: ReviewsComponent
   }
 ];
 

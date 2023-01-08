@@ -1,7 +1,2 @@
-<!--<app-landing></app-landing>-->
-<!-- <app-search></app-search> -->
-<app-navigation *ngIf="authService.isLoggedIn$ | async"></app-navigation>
-<router-outlet></router-outlet> 
-<!-- <app-profile></app-profile> -->
-<!-- <app-navbar></app-navbar>
-<app-home-page></app-home-page> -->
+<navigation *ngIf="authService.isLoggedIn$ | async"></navigation>
+<router-outlet></router-outlet>
