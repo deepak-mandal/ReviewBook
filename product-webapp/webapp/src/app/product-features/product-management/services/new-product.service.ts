@@ -12,16 +12,7 @@ export class NewProductService {
     constructor(private http: HttpClient) { }
 
     addNewProduct(product: any) {
-        // const body = JSON.stringify(product);
         return this.http.post(this.NEW_PRODUCT_URL, product);
-            // .subscribe(
-            //     (data) => {
-            //         console.log(data);
-            //         window.alert("Product added successfully !");
-            //         // this.onReset();
-            //         // this.router.navigate(['']);
-            //     }
-            // )
     }
 
     getAllProducts() {
@@ -29,6 +20,6 @@ export class NewProductService {
     }
 
     getById(productId) {
-        return this.http.get(this.GET_PRODUCT_BY_ID+`/${productId}`);
+        return this.http.get(this.GET_PRODUCT_BY_ID + `/${productId}`);
     }
 }

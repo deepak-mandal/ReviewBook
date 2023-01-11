@@ -1,0 +1,20 @@
+.footer {
+    padding-top: 10px;
+    /* width: 95vw */
+    padding-bottom: 10px;
+  }
+  
+  .footer-picture {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: baseline;
+    text-align: center; */
+    margin-right: 100px;
+    margin-left: 25px;
+  }
+  
+  .profile-heading {
+    text-align: right;
+    align-items: center;
+  }

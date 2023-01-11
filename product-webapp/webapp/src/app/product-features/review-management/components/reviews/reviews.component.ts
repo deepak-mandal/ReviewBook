@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,9 @@ import { Review } from 'src/app/product-features/review-management/model/review'
 import { ReviewService } from 'src/app/product-features/review-management/services/review.service';
 import { NewProductService } from 'src/app/product-features/product-management/services/new-product.service';
 import { RatingService } from 'src/app/product-features/review-management/services/rating.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DkmDialogComponent } from 'src/app/shared/dkm-dialog/dkm-dialog.component';
+import { ReviewData } from '../../types/review.interface';
 
 @Component({
   selector: 'app-reviews',
@@ -15,71 +18,79 @@ import { RatingService } from 'src/app/product-features/review-management/servic
 })
 export class ReviewsComponent implements OnInit {
 
-  userName : string = sessionStorage.getItem('username');
-  l : Like = new Like();
-  
-  
+  userName: string = sessionStorage.getItem('username');
+  l: Like = new Like();
 
-  userform:FormGroup;
-  reviewobj: Review= new Review();
+
+
+  userform: FormGroup;
+  reviewobj: Review = new Review();
   allreviews: any;
-  
+
 
 
   productId;
-  product:any;
-  rating=0;
+  product: any;
+  rating = 0;
   hasRated = false;
   alertMsgSent = false;
-  ratingArr = [0,1,2,3,4];
+  ratingArr = [0, 1, 2, 3, 4];
   durationInSeconds = 5;
-  
 
-  constructor(private rs:ReviewService, private activateRoute: ActivatedRoute, private newProductService: NewProductService, private formBuilder:FormBuilder,private ratingService: RatingService,private snackBar: MatSnackBar ) { }
+
+  constructor(
+    private rs: ReviewService,
+    private activateRoute: ActivatedRoute,
+    private newProductService: NewProductService,
+    private formBuilder: FormBuilder,
+    private ratingService: RatingService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
+
+  ) { }
   user = window.sessionStorage.getItem("username");
   todayNumber: number = Date.now();
-
+  isCurrentUserRated: boolean = false
   ngOnInit(): void {
     this.productId = this.activateRoute.snapshot.params['productId'];
-    console.log("product id in review:", this.productId);
-    this.newProductService.getById(this.productId).subscribe((data) => {
-      this.product = data;
-      console.log("product");
-      console.log(this.product);
-    })
+    this.getProductDetails()
     this.getreview();
-    this.userform=new FormGroup({
-      "productId" : new FormControl(this.productId),
-      "user" : new FormControl(this.user),
-      "title" : new FormControl(""),
-      "date" :new FormControl(""),
-      "text" : new FormControl("",[Validators.required, Validators.minLength(2)])
+    this.userform = new FormGroup({
+      "productId": new FormControl(this.productId),
+      "user": new FormControl(this.user),
+      "title": new FormControl(""),
+      "date": new FormControl(""),
+      "text": new FormControl("", [Validators.required, Validators.minLength(2)])
     });
   }
 
-  // updateSetting(event) {
-  //   this.rating = event.value;
-  // }
-  // getUserName () : String {
-  //   return sessionStorage.getItem('username');
-  // }
+  getProductDetails() {
+    this.newProductService.getById(this.productId).subscribe((data) => {
+      this.product = data;
+      for (let id of this.product.ratedUsernames) {
+        if (this.user == id) {
+          this.isCurrentUserRated = true
+        }
+      }
+    })
+  }
 
-  onClick(r:number) {
-    this.rating = r; 
+  onClick(r: number) {
+    this.rating = r;
     this.hasRated = true;
     this.openSnackBar();
-    console.log(this.rating);
-    this.ratingService.rateTheProduct(sessionStorage.getItem('username'),this.rating,this.productId).subscribe(()=>{
-  });
+    this.ratingService.rateTheProduct(sessionStorage.getItem('username'), this.rating, this.productId).subscribe(() => {
+      this.getProductDetails()
+    });
   }
 
   openSnackBar() {
-    this.snackBar.open("You Have Rated "+this.rating+" out of 5"), {
+    this.snackBar.open("You Have Rated " + this.rating + " out of 5"), {
       duration: 1,
     };
   }
 
-  showIcon(index:number) {
+  showIcon(index: number) {
     if (this.rating >= index + 1) {
       return 'star';
     } else {
@@ -88,7 +99,7 @@ export class ReviewsComponent implements OnInit {
     }
   }
 
-  getUserName(){
+  getUserName() {
     return sessionStorage.getItem('username');
   }
 
@@ -126,61 +137,53 @@ export class ReviewsComponent implements OnInit {
 
   getreview() {
     this.rs
-    .getProducts(this.productId)
-    .subscribe(
-      (data) =>  {
-        this.allreviews = data;
-        console.log("all product is :", this.allreviews);
-        console.log(typeof this.allreviews)
-      }
-    )
+      .getProducts(this.productId)
+      .subscribe(
+        (data) => {
+          this.allreviews = data;
+        }
+      )
   }
- 
 
-  saveForm(){
-    console.log('Form data is ', this.userform.value);
-    this.reviewobj.text=this.userform.value.text;
-    this.reviewobj.userName=this.userform.value.user;
-    this.reviewobj.productId=this.userform.value.productId;
-    // this.reviewobj.date=this.userform.value.date;
-    // this.reviewobj.reviewdusername.add(this.user);
-    console.log(this.reviewobj)
+
+  saveForm() {
+    this.reviewobj.text = this.userform.value.text;
+    this.reviewobj.userName = this.userform.value.user;
+    this.reviewobj.productId = this.userform.value.productId;
     this.rs
-    .sendreview(this.reviewobj)
-    .subscribe((response) => {
-      console.log(response);
-      // this.router.navigate(['/home']).then(() => {
+      .sendreview(this.reviewobj)
+      .subscribe((response) => {
         window.location.reload();
-      // });
-    }
-    );
-}
-// liked() : boolean {
-//   //  console.log(this.reviewobj.likedUsernames.has(this.userName))
-//   //  return !this.reviewobj.likedUsernames.has(this.userName);
-//   if(this.reviewobj.likedUsernames.indexOf(this.userName)==-1){
-//     return false;
-//   }
-//   else{
-//     return true;
-//   }
-// }
-// like(r: Review){
-//   r.likeCount++;
-//   // r.likedUsernames.push(this.userName);
-//   this.l.userName=this.userName;
-//   this.l.reviewId=r.reviewId;
-//   this.rs.LikeService(this.l);
-// }
-// unlike(r:Review){
-//   r.likeCount--;
-//   // r.likedUsernames.(this.userName);
-//   const index: number = r.likedUsernames.indexOf(this.userName);
-//     r.likedUsernames.splice(index, 1);
-//   this.l.userName=this.userName;
-//   this.l.reviewId=r.reviewId;
-//   this.rs.UnlikeService(this.l);
-  
-// }
+      }
+      );
+  }
 
+  comment = ''
+  giveReview(): void {
+    const dialogRef = this.dialog.open(DkmDialogComponent, {
+      data: { title: 'Review', reviewComment: '' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.comment = result;
+      this.reviewobj.text = result;
+      this.reviewobj.userName = this.user;
+      this.reviewobj.productId = this.productId;
+      this.rs
+        .sendreview(this.reviewobj)
+        .subscribe((response) => {
+          window.location.reload();
+        }
+        );
+    });
+  }
+
+  numSequence(n: number): Array<number> {
+    n = Math.round(n)
+    return Array(n);
+  }
+  numSequenceForBlankStar(n: number): Array<number> {
+    n = Math.round(n)
+    return Array(5 - n);
+  }
 }

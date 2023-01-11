@@ -1,0 +1,49 @@
+.custom-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  
+}
+
+.custom-card{
+    /* object-fit: contain; */
+    // height: 250px;
+    // padding-bottom: 15px;
+    padding: 5px;
+    // margin:10px;
+}
+// .product > mat-card{
+//     display: flex;
+//     flex-direction: column;
+//     min-height: 400px;
+//     width: 400px;
+//     margin: 20px;
+//     /* background-color: rgb(59, 148, 221); */
+//     background-color: rgb(116, 188, 255);
+//     /* align-items: center; */
+// }
+
+// .heading{
+//     text-align: center;
+// }
+
+// .details{
+//     text-align: left;
+// }
+
+// .category{
+//     margin: 20px;
+//     padding: 5px;
+// }
+
+mat-card:hover{
+    cursor: pointer;
+    box-shadow: 0 2px 1px -1px rgba(0,0,0,1), 
+                0 1px 1px 0 rgba(0,0,0,1), 
+                0 1px 3px 0 rgba(0,0,0,1);
+}
+
+.custom-card-image{
+    width:300px;
+    height: 300px;
+}

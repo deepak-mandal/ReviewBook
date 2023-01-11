@@ -9,45 +9,40 @@ import { Products } from '../models/products';
 export class ProductsService {
 
 
-  
 
-mainUrl="http://localhost:8081/product/upload";
-getUrl="http://localhost:8081/product/getAll";
-urlDelete:string="http://localhost:8081/product/deleteExistingProduct";
-urlUpdate:string="http://localhost:8081/product/modify";
-  
+
+  mainUrl = "http://localhost:8081/product/upload";
+  getUrl = "http://localhost:8081/product/getAll";
+  urlDelete: string = "http://localhost:8081/product/deleteExistingProduct";
+  urlUpdate: string = "http://localhost:8081/product/modify";
+
   //to communicate between two URL
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
 
- 
 
-  getProducts():Observable<any[]>{
+
+  getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.getUrl);
   }
 
 
- 
 
 
-  updateProduct(product:any, prodId){
-    console.log(product)
-    console.log("updating on id: "+product.productId)
-    console.log("updating on id: "+prodId)
-    return this.http.put(this.urlUpdate+"/"+prodId, product);    //two argument one for on which, other for 
+
+  updateProduct(product: any, prodId) {
+    return this.http.put(this.urlUpdate + "/" + prodId, product);    //two argument one for on which, other for 
   }
 
 
 
-  deleteProduct(product:any){
-    console.log(product)
-    console.log(product.productId)
-    return this.http.delete(this.urlDelete+"/"+product.productId);
+  deleteProduct(product: any) {
+    return this.http.delete(this.urlDelete + "/" + product.productId);
   }
 
 
-  createProducts(product:any){
+  createProducts(product: any) {
     return this.http.post(this.mainUrl, product);
   }
 
@@ -55,6 +50,6 @@ urlUpdate:string="http://localhost:8081/product/modify";
     return this.http.get(this.mainUrl)
   }
 
-  
+
 
 }

@@ -33,14 +33,11 @@ export class AddNewProductComponent implements OnInit {
   ngOnInit(): void {
     this.newProductService.getAllProducts().subscribe(
       (data) => {
-        console.log(data)
       }
     );
   }
 
   onSubmit() {
-    console.log(this.productForm)
-
     const newProduct = new Product(
       window.sessionStorage.getItem("username"),
       this.productForm.value['productName'],
@@ -53,13 +50,8 @@ export class AddNewProductComponent implements OnInit {
     const uploadFileData = new FormData();
     uploadFileData.append('item', JSON.stringify(newProduct));
     uploadFileData.append('image', this.selectedFile);
-    console.log('Image file is : ' + this.selectedFile)
-    console.log(newProduct)
-    console.log(uploadFileData)
-
     this.newProductService.addNewProduct(uploadFileData).subscribe(
       (data) => {
-        console.log(data);
         window.alert("Product added successfully !");
         this.onReset();
       },
@@ -102,7 +94,6 @@ export class AddNewProductComponent implements OnInit {
         image.onload = (rs: any) => {
           const img_height = rs.currentTarget['height'];
           const img_width = rs.currentTarget['width'];
-          console.log(img_height, img_width);
           const imgBase64Path = e.target.result;
           this.cardImageBase64 = imgBase64Path;
           this.uploadedImage = imgBase64Path
@@ -112,7 +103,6 @@ export class AddNewProductComponent implements OnInit {
 
       reader.readAsDataURL(fileInput.target.files[0]);
     }
-    console.log(this.selectedFile)
   }
 
 

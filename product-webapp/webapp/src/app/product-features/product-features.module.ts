@@ -20,7 +20,9 @@ import { ReviewsComponent } from './review-management/components/reviews/reviews
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AboutReviewbookPlatformComponent } from './reviewbook-home/components/about-reviewbook-platform/about-reviewbook-platform.component';
 import { ManageProfileComponent } from './user-management/components/manage-profile/manage-profile.component';
-
+import { MatCardModule } from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import { FooterComponent } from './reviewbook-home/components/footer/footer.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { ManageProfileComponent } from './user-management/components/manage-prof
     NavigationComponent,
     ReviewsComponent,
     AboutReviewbookPlatformComponent,
-    ManageProfileComponent
+    ManageProfileComponent,
+    FooterComponent,
+    
   ],
   imports: [
     CommonModule, //not required as we are using shared module that has already this module
@@ -51,11 +55,18 @@ import { ManageProfileComponent } from './user-management/components/manage-prof
     AppRoutingModule,
     SharedModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatListModule,
+    // MatFormFieldModule,
+    //     MatInputModule
+
+    
 
   ],
   exports: [
-    NavigationComponent
+    NavigationComponent,
+    FooterComponent
   ]
 })
 export class ProductFeaturesModule { }

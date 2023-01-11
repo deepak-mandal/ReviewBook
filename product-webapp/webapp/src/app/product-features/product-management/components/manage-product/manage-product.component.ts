@@ -11,8 +11,8 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ManageProductComponent implements OnInit {
 
- 
- 
+
+
   "username" = window.sessionStorage.getItem("username");
 
 
@@ -58,22 +58,13 @@ export class ManageProductComponent implements OnInit {
   }
 
   submitData() {
-    //this.reactiveForm.docId = "123";
-    console.log("form data:", this.reactiveForm.value);
-    console.log("image:", this.selectedFile);
-
     const item = this.reactiveForm.value;
     const uploadFileData = new FormData();
     uploadFileData.append('item', JSON.stringify(item));
     uploadFileData.append('image', this.selectedFile);
-
-    console.log(item);
-
     this.productsService.createProducts(uploadFileData)
       .subscribe(
         (response) => {
-          console.log(response);
-          console.log("added successfully");
           alert("added successfully");
           window.location.reload();
         },
@@ -93,7 +84,6 @@ export class ManageProductComponent implements OnInit {
         image.onload = (rs: any) => {
           const img_height = rs.currentTarget['height'];
           const img_width = rs.currentTarget['width'];
-          console.log(img_height, img_width);
           const imgBase64Path = e.target.result;
           this.cardImageBase64 = imgBase64Path;
           this.isImageSaved = true;
@@ -115,8 +105,6 @@ export class ManageProductComponent implements OnInit {
       .subscribe(
         (data) => {
           this.allProduct = data;
-          console.log("all product is :", this.allProduct);
-          console.log(typeof this.allProduct)
         }
       )
   }
@@ -126,11 +114,7 @@ export class ManageProductComponent implements OnInit {
 
   //for delete operation
   deleteProduct(product: any) {
-    console.log("product id = see.." + product.productId);
-    //console.log(product.productId.toString);
-
     this.productsService.deleteProduct(product).subscribe(() => { this.productData })
-    console.log("Product details deleted successfully!");
     window.location.reload();
   }
 
@@ -140,14 +124,11 @@ export class ManageProductComponent implements OnInit {
 
   //for two way data binding
   productObj = {
-    //docId:"",
     productId: 0,
     productName: "",
     description: "",
     verificationId: "",
     category: "",
-    //averageRating:0,
-    //productImage:"",
     specs: []
   }
 
@@ -161,8 +142,6 @@ export class ManageProductComponent implements OnInit {
     this.isEdit = true
     this.productObj = product
     this.prodId = product.productId;
-    console.log(this.productObj)
-
     this.reactiveForm.patchValue({
       'productName': this.productObj.productName,
       'description': this.productObj.description,
@@ -180,32 +159,14 @@ export class ManageProductComponent implements OnInit {
 
   updateProduct(product: Products) {
     this.isEdit = !this.isEdit;
-
-
-
-    console.log("form data:", this.reactiveForm.value);
-    console.log("image:", this.selectedFile);
-
-    console.log(this.prodId + "this is the prodid i want to send");
-
-
     this.reactiveForm.value['productId'] = this.prodId;
-    console.log("after form data:", this.reactiveForm.value);
     const item = this.reactiveForm.value;
     const uploadFileData = new FormData();
     uploadFileData.append('item', JSON.stringify(item));
     uploadFileData.append('image', this.selectedFile);
-
-
-    console.log("sending text data: " + item);
-
-
     this.productsService.updateProduct(uploadFileData, this.prodId)
       .subscribe(
         (response) => {
-          console.log(response);
-          console.log("updated successfully");
-          // alert("updated successfully");
           window.location.reload();
         },
         (err) => console.log('Error Occured during saving: ' + err.message)

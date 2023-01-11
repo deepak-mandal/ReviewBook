@@ -1,0 +1,27 @@
+<div class="custom-cards">
+  <div *ngFor="let item of products" class="custom-card">
+    <mat-card (click)="onReview(item.productId)">
+        <mat-card-header>
+          <mat-card-title>
+            {{item.productName | titlecase}}
+          </mat-card-title>
+          <mat-card-subtitle>
+            {{item.category | titlecase}}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <img class="custom-card-image" src="data:image/png;base64,{{ item.imageByte }}" alt="{{item.imageByte}}" />
+          <mat-card-actions >
+          <span *ngFor="let n of numSequence(item.averageRating);
+           let i = index;">
+           <mat-icon> star </mat-icon>
+          </span>
+          <span *ngFor="let n of numSequenceForBlankStar(item.averageRating);
+           let i = index;">
+           <mat-icon> star_border </mat-icon>
+          </span>
+        </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>

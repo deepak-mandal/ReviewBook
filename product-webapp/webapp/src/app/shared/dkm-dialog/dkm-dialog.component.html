@@ -1,0 +1,18 @@
+<h1 mat-dialog-title style=" color: rgb(227, 25, 55);">{{data?.title}}
+    <button style="float: right" mat-button class="close-icon" [mat-dialog-close]="true">
+      <mat-icon>close</mat-icon>
+    </button>
+  </h1>
+  
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Review</mat-label>
+      <textarea matInput placeholder="Please review whatever you think..." [(ngModel)]="data.reviewComment"></textarea>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+
+    <!-- <button mat-raised-button (click)="comment($event)">Comment</button> -->
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.reviewComment" cdkFocusInitial>Comment</button>
+  </div>
