@@ -1,8 +1,21 @@
 .custom-cards{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+ 
   
+}
+
+.page-style{
+    margin:1vw;
+    padding: 1vw;
+}
+
+.pagination-content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .custom-card{
@@ -47,3 +60,4 @@ mat-card:hover{
     width:300px;
     height: 300px;
 }
+

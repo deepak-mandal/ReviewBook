@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AllProductService } from 'src/app/product-features/reviewbook-home/services/all-product.service';
-import {ChangeDetectionStrategy, Input} from "@angular/core";
+import { ChangeDetectionStrategy, Input } from "@angular/core";
+import { ColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,37 +12,59 @@ import {ChangeDetectionStrategy, Input} from "@angular/core";
 })
 export class DashboardComponent implements OnInit {
 
- 
   items: any[];
-  // recommendedItems: any[];
-  // totalRecords:number
-  constructor(private allProduct: AllProductService, ) { 
-    this.items=[];
+  productData: any[] = []
+  topReviewedProducts: any[] = [];
+  constructor(
+    private allProduct: AllProductService,
+    private router: Router
+  ) {
+    this.items = [];
   }
 
   ngOnInit(): void {
     this.getProducts()
   }
-  getProducts(){
-    this.allProduct.getAllProducts().subscribe(resp=>{
-      this.items=resp;
-      // console.log(this.items)
-      // this.totalRecords=this.items.length;
+  getProducts() {
+    this.allProduct.getAllProducts().subscribe(resp => {
+      this.items = resp;
+      this.items.forEach(entity => {
+        if (entity.averageRating >= 3) {
+          this.topReviewedProducts.push(entity);
+        }
+      })
     })
   }
 
-  // getRecommendedProducts(){
-  //   this.recommendeProducts.getRecommendedProducts().subscribe(resp=>{
-  //     this.recommendedItems=resp;
-  //   })
-  // }
+  private gridApi!: GridApi;
+  private gridColumnApi!: ColumnApi;
+  columnDefs: ColDef[] = [
+    { field: 'productName', },
+    { field: 'description', },
+    { field: 'category', },
+    { field: 'averageRating', }
+  ];
 
-  handlePageEvent(pageData: any){
-    console.log("**")
-    console.log(pageData)
-    console.log("**")
+  rowData = this.topReviewedProducts
+  public defaultColDef: ColDef = {
+    sortable: true,
+    resizable: true,
+    filter: true,
+    cellStyle: { color: 'rgb(82, 54, 171)' }
+  };
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    params.api.sizeColumnsToFit();
   }
 
-
+  onRowClicked(event: any) {
+    console.log(event.data.productId)
+    const prodId = event.data.productId
+    this.router.navigateByUrl(`/review/${prodId}`);
+  }
 
 }
+
+

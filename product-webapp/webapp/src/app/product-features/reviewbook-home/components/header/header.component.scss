@@ -1,14 +1,15 @@
 #carouselExampleControls{
-    height: 500px;
-    background-color: rgb(191, 199, 207);
+    height: 300px;
+    // background-color: rgb(191, 199, 207);
+    background: linear-gradient(to right, rgb(227, 25, 55), rgb(82, 54, 171))
 }
 
 img{
     object-fit: contain;
-    height: 500px;
+    height: 300px;
 }
 
-.category{
-    background-color: rgb(144, 175, 202);
-}
+// .category{
+//     background-color: rgb(144, 175, 202);
+// }
 

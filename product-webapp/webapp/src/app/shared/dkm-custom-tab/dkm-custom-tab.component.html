@@ -1,0 +1,8 @@
+<mat-tab-group mat-align-tabs="start">
+    <span *ngFor="let entity of data">
+      <mat-tab label="{{entity.tabLabel}}">
+        <!-- {{entity.productItems|json}} -->
+        <products [products] = entity.productItems></products>
+      </mat-tab>
+    </span>
+  </mat-tab-group>

@@ -1,11 +1,12 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="data:image/png;base64,{{products[0].imageByte}}" class="d-block w-100">
+        <img src="data:image/png;base64,{{products[0].imageByte}}" class="d-block w-100" 
+        (click)="onClickImg(products[0])">
       </div>
       <div class="carousel-item" *ngFor="let item of products.slice(1)">
         <img src="data:image/png;base64,{{item.imageByte}}"
-        alt="Card image cap" class="d-block w-100">
+        alt="Card image cap" class="d-block w-100" (click)="onClickImg(item)">
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

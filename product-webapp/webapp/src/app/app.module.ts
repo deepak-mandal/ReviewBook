@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NewProductService } from './product-features/product-management/services/new-product.service';
 import { ProductsService } from './product-features/product-management/services/products.service';
 import { ProductFeaturesModule } from './product-features/product-features.module';
+import { AgGridModule } from 'ag-grid-angular';
 // import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ProductFeaturesModule } from './product-features/product-features.modul
     MatSelectModule,
     MatSnackBarModule,
     ProductFeaturesModule,
-    // NgxPaginationModule
+    // NgxPaginationModule,
+    AgGridModule
   ],
   providers: [ApiService, ProductsService, NewProductService],
   bootstrap: [AppComponent]

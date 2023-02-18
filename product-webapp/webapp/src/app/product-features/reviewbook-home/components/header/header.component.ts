@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
@@ -9,11 +10,15 @@ export class HeaderComponent implements OnInit {
 
   
   @Input() products: any[];
-  constructor() {
+  constructor(private router: Router) {
     this.products=[];
    }
 
   ngOnInit(): void {
   }
 
+  onClickImg(event){
+    console.log(event)
+    this.router.navigateByUrl(`/review/${event.productId}`);
+  }
 }

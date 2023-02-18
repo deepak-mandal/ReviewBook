@@ -25,6 +25,9 @@ import {MatListModule} from '@angular/material/list';
 import { FooterComponent } from './reviewbook-home/components/footer/footer.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {MatTabsModule} from '@angular/material/tabs';
+import { AgGridModule } from 'ag-grid-angular';
+
 
 @NgModule({
   declarations: [
@@ -62,13 +65,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
     // MatFormFieldModule,
     //     MatInputModule,
     MatPaginatorModule,
-    NgxPaginationModule 
+    NgxPaginationModule,
+    MatTabsModule,
+    AgGridModule
     
 
   ],
   exports: [
     NavigationComponent,
-    FooterComponent
+    FooterComponent,
+    ProductsComponent
   ]
 })
 export class ProductFeaturesModule { }

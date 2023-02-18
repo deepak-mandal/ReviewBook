@@ -1,7 +1,15 @@
-<header [products] = "items"></header>
-<!-- <h2>Recommendation:</h2> -->
-<!-- <products [products] = "recommendedItems"></products> -->
-<h2>All Products</h2>
-<products [products] = "items"></products>
+<header [products]="topReviewedProducts"></header>
 
-
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="All Products">
+        <products [products]="items"></products>
+    </mat-tab>
+    <mat-tab label="Top Rated Products">
+        <div style="overflow:auto; margin:1vw">
+            <ag-grid-angular style="width: 95vw; height: 75vh;" class="ag-theme-alpine" [rowData]="rowData"
+              [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)"
+              [paginationAutoPageSize]="true" [pagination]="true" (rowClicked)="onRowClicked($event)">
+            </ag-grid-angular>
+          </div>
+    </mat-tab>
+</mat-tab-group>

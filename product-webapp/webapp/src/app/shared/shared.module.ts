@@ -13,12 +13,17 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DkmTabComponent } from './dkm-tab/dkm-tab.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { DkmCustomTabComponent } from './dkm-custom-tab/dkm-custom-tab.component';
 
 @NgModule({
   declarations: [
     DkmCardComponent,
     DkmDialogComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DkmTabComponent,
+    DkmCustomTabComponent
   ],
   imports: [
     CommonModule,
@@ -31,11 +36,14 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatPaginatorModule,
     MatInputModule,
     MatSlideToggleModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatTabsModule
   ],
   exports:[
     DkmCardComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DkmTabComponent,
+    DkmCustomTabComponent
   ]
 })
 export class SharedModule { }

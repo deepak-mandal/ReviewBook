@@ -172,7 +172,9 @@ export class ReviewsComponent implements OnInit {
       this.rs
         .sendreview(this.reviewobj)
         .subscribe((response) => {
-          window.location.reload();
+          // window.location.reload();
+          this.getreview();
+          this.getProductDetails();
         }
         );
     });

@@ -11,7 +11,9 @@ export class DkmCardComponent implements OnInit {
 
 
 
-  // @Input() products!: any[]
+  @Input() products!: any[]
+  // @Input('products') products: any[] = [];
+  page: number = 1;
   @Output() productId = new EventEmitter<string>()
 
   ngOnInit(): void {
@@ -32,6 +34,5 @@ export class DkmCardComponent implements OnInit {
   }
 
 
-  @Input('products') products: any[] = [];
-  page: number = 1;
+
 }
