@@ -1,5 +1,5 @@
 <div class="custom-cards">
-  <div *ngFor="let item of products" class="custom-card">
+  <div *ngFor="let item of products | paginate: { itemsPerPage: 10, currentPage: page }" class="custom-card">
     <mat-card (click)="onReview(item.productId)">
         <mat-card-header>
           <mat-card-title>
@@ -24,4 +24,13 @@
         </mat-card-content>
       </mat-card>
     </div>
+</div>
+
+<!-- <ul class="meal-list">
+  <li *ngFor="let meal of meals | paginate: { itemsPerPage: 10, currentPage: page }">
+      {{ meal }}
+  </li>
+</ul> -->
+<div class="has-text-centered">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>

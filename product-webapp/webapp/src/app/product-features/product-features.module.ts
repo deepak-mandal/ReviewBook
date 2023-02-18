@@ -23,7 +23,8 @@ import { ManageProfileComponent } from './user-management/components/manage-prof
 import { MatCardModule } from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import { FooterComponent } from './reviewbook-home/components/footer/footer.component';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -59,8 +60,9 @@ import { FooterComponent } from './reviewbook-home/components/footer/footer.comp
     MatCardModule,
     MatListModule,
     // MatFormFieldModule,
-    //     MatInputModule
-
+    //     MatInputModule,
+    MatPaginatorModule,
+    NgxPaginationModule 
     
 
   ],

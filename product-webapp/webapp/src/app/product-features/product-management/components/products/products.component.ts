@@ -19,4 +19,7 @@ export class ProductsComponent implements OnInit {
   onReview(productId: string) {
     this.router.navigateByUrl(`/review/${productId}`);
   }
+
+
+
 }
