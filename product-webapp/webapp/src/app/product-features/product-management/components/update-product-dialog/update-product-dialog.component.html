@@ -1,0 +1,57 @@
+<h1 mat-dialog-title style=" color: rgb(227, 25, 55);">{{data?.title}}
+  <button style="float: right" mat-button class="close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+  </button>
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="reactiveForm">
+    <hr>
+    <div>
+      <div class="mb-3">
+        <label for="productName" class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="productName" formControlName="productName">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Product Description</label>
+        <textarea class="form-control" name="description" formControlName="description"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="verificationId" class="form-label">Verification Id</label>
+        <input type="text" class="form-control" name="verificationId" formControlName="verificationId">
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select id="inputState" class="form-control" formControlName="category">
+          <option *ngFor="let category of categories" [value]='category'>{{ category }}</option>
+        </select>
+      </div>
+      <div class=" form-label fileInputProfileWrap">
+        <label for="productImage" class="form-label">Product Image</label><br>
+        <input type="file" accept="image/*" (change)="fileChangeEvent($event)" class="fileInputProfile" />
+      </div>
+      <div class="row" formArrayName="specs">
+        <div class="col">
+          <button type="button" class="btn btn-outline-info btn-sm mb-2" (click)="onAddSpecifications()">Add
+            Specification</button>
+          <div *ngFor="let specsControl of reactiveForm.get('specs')['controls']; let i = index">
+            <div class="row">
+              <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Specification . . ." [formControlName]="i">
+                <div class="input-group-prepend">
+                  <button type="button" class="input-group-text" style="background-color:tomato; color: white;"
+                    (click)="onDeleteSpecifications(i)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions style="float:right">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateProduct(reactiveForm.value)">Update
+    Product</button>
+</div>

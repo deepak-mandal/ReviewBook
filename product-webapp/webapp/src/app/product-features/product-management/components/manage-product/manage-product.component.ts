@@ -1,43 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Products } from '../../models/products';
 import { ProductsService } from '../../services/products.service';
+import { UpdateProductDialogComponent } from '../update-product-dialog/update-product-dialog.component';
 @Component({
   selector: 'app-manage-product',
   templateUrl: './manage-product.component.html',
   styleUrls: ['./manage-product.component.scss']
 })
 export class ManageProductComponent implements OnInit {
-
-
-
+  page: number = 1;
   "username" = window.sessionStorage.getItem("username");
-
-
   categories = ["Select", "Electronics", "Clothing", "Utility"];
-
   reactiveForm: any = FormGroup;
   selectedFile!: File;
   isImageSaved: boolean = false;
   cardImageBase64: string | undefined;
 
-  constructor(private fb: FormBuilder, private productsService: ProductsService
+  constructor(private fb: FormBuilder, private productsService: ProductsService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) {
     this.reactiveForm = this.fb.group({
-      //"docId": new FormControl(''),
-      //"productId": new FormControl(''),
       "productName": new FormControl('', [Validators.required, Validators.minLength(5)]),
       "description": new FormControl('', [Validators.required, Validators.minLength(5)]),
       "verificationId": new FormControl(''),
       "category": new FormControl(''),
-      //"averageRating": new FormControl(''),
-      //"specs": new FormControl(''),
       "username": window.sessionStorage.getItem("username"),
       'specs': new FormArray([]),
-
-
     });
   }
 
@@ -89,7 +84,6 @@ export class ManageProductComponent implements OnInit {
           this.isImageSaved = true;
         };
       };
-
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }
@@ -97,30 +91,33 @@ export class ManageProductComponent implements OnInit {
   allProduct: any;
 
   ngOnInit(): void {
-    this.getPhotos();
+    this.getProductDetails();
   }
-  getPhotos() {
+
+  currentUserProductDetails: any[] = []
+  getProductDetails() {
     this.productsService
       .getProducts()
       .subscribe(
         (data) => {
-          this.allProduct = data;
+          this.allProduct = data as any[];
+          this.allProduct.forEach(element => {
+            if (element.username == this.username) {
+              this.currentUserProductDetails.push(element);
+            }
+          });
         }
       )
   }
 
   productData: any = [];
 
-
   //for delete operation
   deleteProduct(product: any) {
     this.productsService.deleteProduct(product).subscribe(() => { this.productData })
-    window.location.reload();
+    // window.location.reload();
+    this.getProductDetails();
   }
-
-
-
-
 
   //for two way data binding
   productObj = {
@@ -131,11 +128,7 @@ export class ManageProductComponent implements OnInit {
     category: "",
     specs: []
   }
-
-
   isEdit: boolean = false;
-
-
   //for Update operation
   prodId: string = ""
   editProduct(product: any) {
@@ -154,7 +147,6 @@ export class ManageProductComponent implements OnInit {
       const description = new FormControl(specs, Validators.required);
       (<FormArray>this.reactiveForm.get('specs')).push(description);
     }
-
   }
 
   updateProduct(product: Products) {
@@ -171,9 +163,23 @@ export class ManageProductComponent implements OnInit {
         },
         (err) => console.log('Error Occured during saving: ' + err.message)
       );
-
   }
 
-
+  openProductUpdateDialog(product) {
+    const dialogRef = this.dialog.open(UpdateProductDialogComponent, {
+      height: 'auto',
+      width: '75vw',
+      data: {
+        title: 'Update Product Details',
+        product: product,
+        isEdit: this.isEdit
+      },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getProductDetails();
+      }
+    });
+  }
 
 }

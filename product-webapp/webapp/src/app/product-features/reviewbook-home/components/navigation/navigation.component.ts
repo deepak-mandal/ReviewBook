@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AddNewProductDialogComponent } from 'src/app/product-features/product-management/components/add-new-product-dialog/add-new-product-dialog.component';
 
 @Component({
   selector: 'navigation',
@@ -8,23 +11,19 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
+  constructor(private router: Router,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,) { }
 
-  constructor(private router:Router) { }
-
-  Role=window.sessionStorage.getItem("role");
-
-  isProductOwner:boolean=false;
+  Role = window.sessionStorage.getItem("role");
+  isProductOwner: boolean = false;
   ngOnInit(): void {
-
-    if(this.Role=="Product owner"){
-      this.isProductOwner=true
+    if (this.Role == "Product owner") {
+      this.isProductOwner = true
     }
-    
   }
 
-
-
-  logout(){
+  logout() {
     sessionStorage.removeItem('authorization');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('role');
@@ -33,5 +32,20 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+
+  addProduct() {
+    const dialogRef = this.dialog.open(AddNewProductDialogComponent, {
+      height: 'auto',
+      width: '75vw',
+      data: { title: 'Enter Product Details' },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.snackBar.open("Product added successfully."), {
+          duration: 1,
+        };
+      }
+    });
+  }
 
 }

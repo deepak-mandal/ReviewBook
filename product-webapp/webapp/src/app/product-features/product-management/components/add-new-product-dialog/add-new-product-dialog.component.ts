@@ -1,18 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Product } from 'src/app/product-features/product-management/models/product';
-import { NewProductService } from 'src/app/product-features/product-management/services/new-product.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-@Component({
-  selector: 'app-add-new-product',
-  templateUrl: './add-new-product.component.html',
-  styleUrls: ['./add-new-product.component.scss']
-})
-export class AddNewProductComponent implements OnInit {
+import { ReviewData } from 'src/app/product-features/review-management/types/review.interface';
+import { Product } from '../../models/product';
+import { NewProductService } from '../../services/new-product.service';
 
+@Component({
+  selector: 'add-new-product-dialog',
+  templateUrl: './add-new-product-dialog.component.html',
+  styleUrls: ['./add-new-product-dialog.component.scss']
+})
+export class AddNewProductDialogComponent implements OnInit {
+
+  constructor(private newProductService: NewProductService, private router: Router,
+    public dialogRef: MatDialogRef<AddNewProductDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ReviewData,) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
   "username" = window.sessionStorage.getItem("username");
-
 
   productForm = new FormGroup({
     'productName': new FormControl(null, Validators.required),
@@ -22,13 +31,11 @@ export class AddNewProductComponent implements OnInit {
     'specifications': new FormArray([])
   });
 
-  categories = ["Select","Electronics", "Clothing", "Utility"];
+  categories = ["Select", "Electronics", "Clothing", "Utility"];
   selectedFile!: File;
   isImageSaved: boolean = false;
   cardImageBase64: string | undefined;
   uploadedImage: any;
-
-  constructor(private newProductService: NewProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.newProductService.getAllProducts().subscribe(
@@ -57,9 +64,7 @@ export class AddNewProductComponent implements OnInit {
       },
       error => console.log("Some error occured.! " + error)
     )
-
-    // this.router.navigate(['/dashboard']);
-    this.router.navigate(['/dashboard']).then(() => {
+    this.router.navigate(['/products']).then(() => {
       window.location.reload();
     });
 
@@ -100,10 +105,11 @@ export class AddNewProductComponent implements OnInit {
           this.isImageSaved = true;
         };
       };
-
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }
 
-
+  addProduct() {
+    this.onSubmit()
+  }
 }

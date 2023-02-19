@@ -10,7 +10,6 @@ import { LoginComponent } from './user-management/components/login/login.compone
 import { RegistrationComponent } from './user-management/components/registration/registration.component';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './product-management/components/products/products.component';
-import { AddNewProductComponent } from './product-management/components/add-new-product/add-new-product.component';
 import { ManageProductComponent } from './product-management/components/manage-product/manage-product.component';
 import { DashboardComponent } from './reviewbook-home/components/dashboard/dashboard.component';
 import { MatDividerModule } from '@angular/material/divider';
@@ -27,17 +26,16 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AgGridModule } from 'ag-grid-angular';
+import { AddNewProductDialogComponent } from './product-management/components/add-new-product-dialog/add-new-product-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UpdateProductDialogComponent } from './product-management/components/update-product-dialog/update-product-dialog.component';
 
 
 @NgModule({
   declarations: [
-
     LoginComponent,
     RegistrationComponent,
     ProductsComponent,
-
-
-    AddNewProductComponent,
     ManageProductComponent,
     DashboardComponent,
     HeaderComponent,
@@ -46,6 +44,8 @@ import { AgGridModule } from 'ag-grid-angular';
     AboutReviewbookPlatformComponent,
     ManageProfileComponent,
     FooterComponent,
+    AddNewProductDialogComponent,
+    UpdateProductDialogComponent,
     
   ],
   imports: [
@@ -62,12 +62,11 @@ import { AgGridModule } from 'ag-grid-angular';
     MatProgressSpinnerModule,
     MatCardModule,
     MatListModule,
-    // MatFormFieldModule,
-    //     MatInputModule,
     MatPaginatorModule,
     NgxPaginationModule,
     MatTabsModule,
-    AgGridModule
+    AgGridModule,
+    MatDialogModule
     
 
   ],

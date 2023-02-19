@@ -1,0 +1,76 @@
+<h1 mat-dialog-title style=" color: rgb(227, 25, 55);">{{data?.title}}
+  <button style="float: right" mat-button class="close-icon" [mat-dialog-close]="true">
+    <mat-icon>close</mat-icon>
+  </button>
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="productName">Name</label>
+      <div *ngIf="!productForm.get('productName').valid && productForm.get('productName').touched"
+        style="font-size: small; color: red;">Invalid input..!</div>
+      <input type="text" class="form-control" id="productName" placeholder="Product Name . . ."
+        formControlName="productName">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="productDescription">Description</label>
+      <div *ngIf="!productForm.get('productDescription').valid && productForm.get('productDescription').touched"
+        style="font-size: small; color: red;">Invalid input..!</div>
+      <textarea type="text" class="form-control" id="productDescription" placeholder="Product Description . . ."
+        formControlName="productDescription"></textarea>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="verificationId">Verification Id</label>
+      <div *ngIf="!productForm.get('verificationId').valid && productForm.get('verificationId').touched"
+        style="font-size: small; color: red;">Invalid input..!</div>
+      <input type="text" class="form-control" id="verificationId" placeholder="Product Verification Id . . ."
+        formControlName="verificationId">
+    </div>
+    <br>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="category">Category</label>
+        <select id="inputState" class="form-control" formControlName="category">
+          <option *ngFor="let category of categories">{{ category }}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="row" formArrayName="specifications">
+      <div class="col">
+        <button type="button" class="btn btn-primary btn-sm mb-2" (click)="onAddSpecifications()">Add
+          Specification</button>
+        <div *ngFor="let specsControl of productForm.get('specifications')['controls']; let i = index">
+          <div class="row">
+            <div class="input-group mt-2">
+              <input type="text" class="form-control" placeholder="Specification . . ." [formControlName]="i">
+              <div class="input-group-prepend">
+                <button type="button" class="input-group-text" style="background-color:tomato; color: white;"
+                  (click)="onDeleteSpecifications(i)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="productImage">Upload Image</label>
+      <input type="file" accept="image/*" class="form-control" id="productImage" (change)="fileChangeEvent($event)">
+    </div>
+    <div class="form-group" *ngIf="uploadedImage">
+      <br>
+      <label>Image Preview</label>
+      <br>
+      <img [src]="uploadedImage" style="max-width: 50vw; max-height: 50vh;">
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions style="float:right">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onReset()">Reset</button>
+  <button mat-button [disabled]="!productForm.valid" [mat-dialog-close]="true" cdkFocusInitial
+    (click)="addProduct()">Submit Product</button>
+</div>

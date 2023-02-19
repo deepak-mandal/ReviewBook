@@ -1,23 +1,18 @@
 .products{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .product > mat-card > img{
-    /* object-fit: contain; */
-    height: 250px;
-    padding-bottom: 15px;
+    width: 280px;
+    height: 300px;
 }
 .product > mat-card{
     display: flex;
     flex-direction: column;
-    min-height: 400px;
-    width: 400px;
-    margin: 20px;
-    /* background-color: rgb(59, 148, 221); */
     background-color: rgb(116, 188, 255);
-    /* align-items: center; */
+    margin:2px
 }
 
 .heading{
@@ -26,11 +21,6 @@
 
 .details{
     text-align: left;
-}
-
-.category{
-    margin: 20px;
-    padding: 5px;
 }
 
 mat-card:hover{

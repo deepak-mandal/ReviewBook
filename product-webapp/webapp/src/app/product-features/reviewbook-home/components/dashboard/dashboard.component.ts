@@ -36,6 +36,11 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  onTabChange(event){
+    console.log(event);
+
+  }
+
   private gridApi!: GridApi;
   private gridColumnApi!: ColumnApi;
   columnDefs: ColDef[] = [

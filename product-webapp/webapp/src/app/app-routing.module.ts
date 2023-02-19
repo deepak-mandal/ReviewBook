@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './product-features/user-management/components/login/login.component';
 import { RegistrationComponent } from './product-features/user-management/components/registration/registration.component';
-import { AddNewProductComponent } from './product-features/product-management/components/add-new-product/add-new-product.component';
 import { ManageProductComponent } from './product-features/product-management/components/manage-product/manage-product.component';
 import { DashboardComponent } from './product-features/reviewbook-home/components/dashboard/dashboard.component';
 import { ReviewsComponent } from './product-features/review-management/components/reviews/reviews.component';
@@ -38,10 +37,6 @@ const routes: Routes = [
   {
     path: 'about-reviewbook-platform',
     component: AboutReviewbookPlatformComponent,
-  },
-  {
-    path: 'add-new-product',
-    component: AddNewProductComponent
   },
   {
     path: 'review/:productId',
