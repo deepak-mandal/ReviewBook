@@ -30,6 +30,13 @@ import { AddNewProductDialogComponent } from './product-management/components/ad
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdateProductDialogComponent } from './product-management/components/update-product-dialog/update-product-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+import {MatMenuModule} from '@angular/material/menu';
+import {MatStepperModule} from '@angular/material/stepper';
+
+
 
 @NgModule({
   declarations: [
@@ -67,8 +74,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTabsModule,
     AgGridModule,
     MatDialogModule,
-    MatCheckboxModule
-    
+    MatCheckboxModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatStepperModule
+
 
   ],
   exports: [

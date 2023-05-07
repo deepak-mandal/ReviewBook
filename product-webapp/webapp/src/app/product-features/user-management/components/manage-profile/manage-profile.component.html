@@ -57,9 +57,9 @@
         </div>
         <div class="form-group" id="wrapper">
           <div class="col-md-8">
-            <button class="btn btn-primary" Style="margin-right: 10px;" (click)="updateProfile()"> Save
+            <button mat-raised-button Style="margin-right: 10px;" (click)="updateProfile()"> Save
               Changes</button>
-            <button type="button" *ngIf="editProfile.value.role=='Product owner'" class="btn btn-info"
+            <button type="button" *ngIf="editProfile.value.role=='Product owner'" mat-stroked-button
               [routerLink]="['/products']">My Products</button>
           </div>
         </div>

@@ -5,6 +5,7 @@
         <products [products]="items"></products>
     </mat-tab>
     <mat-tab label="Top Rated Products">
+      {{this.rowData}}
         <div style="overflow:auto; margin:1vw">
             <ag-grid-angular style="width: 95vw; height: 75vh;" class="ag-theme-alpine" [rowData]="rowData"
               [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)"

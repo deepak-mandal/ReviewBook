@@ -26,7 +26,10 @@
         "ag-grid-angular": "^29.1.0",
         "ag-grid-community": "^29.1.0",
         "bootstrap": "^5.1.3",
+        "jquery": "^3.6.4",
+        "ngx-owl-carousel": "^2.0.7",
         "ngx-pagination": "^6.0.3",
+        "owl.carousel": "^2.3.4",
         "rxjs": "~7.4.0",
         "tslib": "^2.3.1",
         "zone.js": "~0.11.4"
