@@ -42,8 +42,8 @@ submitForm() {
   this.authService
     .login(this.form.value)
     .subscribe((response) => {
-      this.router.navigate(['/dashboard']).then(() => {
-        window.location.reload();
+      this.router.navigate(['']).then(() => {
+        // window.location.reload();
       });
 
     },

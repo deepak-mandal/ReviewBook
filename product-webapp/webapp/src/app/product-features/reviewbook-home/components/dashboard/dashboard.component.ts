@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AllProductService } from 'src/app/product-features/reviewbook-home/services/all-product.service';
-import { ChangeDetectionStrategy, Input } from "@angular/core";
+// import { ChangeDetectionStrategy, Input } from "@angular/core";
 import { ColDef, ColumnApi, GridApi, GridReadyEvent } from 'ag-grid-community';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   ) {
     this.items = [];
   }
-
+  rowData:any
   ngOnInit(): void {
     this.getProducts()
     console.log(this.topReviewedProducts)
@@ -39,6 +39,8 @@ export class DashboardComponent implements OnInit {
 
   onTabChange(event){
     console.log(event);
+    this.getProducts()
+    this.rowData = this.topReviewedProducts
 
   }
 
@@ -51,7 +53,7 @@ export class DashboardComponent implements OnInit {
     { field: 'averageRating', }
   ];
 
-  rowData = this.topReviewedProducts
+  
   public defaultColDef: ColDef = {
     sortable: true,
     resizable: true,

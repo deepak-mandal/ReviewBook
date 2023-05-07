@@ -1,10 +1,11 @@
 <div>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" 
+    type="button" (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
       <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
     </button>
-    <span [routerLink]="['/dashboard']">ReviewBook</span>
+    <span [routerLink]="['']">ReviewBook</span>
     <span class="example-spacer"></span>
     <button mat-button [matMenuTriggerFor]="profile">Profile</button>
     <mat-menu #profile="matMenu">
@@ -23,9 +24,38 @@
     <mat-menu #other="matMenu">
       <button mat-menu-item (click)="logout()">Login with another acount</button>
     </mat-menu>
-    <button style="padding:1px; margin:1px" (click)="logout()" type="submit" mat-icon-button class="example-icon"
+    <button (click)="logout()" type="submit" mat-icon-button class="example-icon"
       aria-label="Example icon-button with share icon">
       <mat-icon>exit_to_app</mat-icon>
     </button>
+    <button *ngIf="!authService.isLoggedIn$ | async"
+     [routerLink]="['/login']" type="submit" mat-icon-button class="example-icon"
+      aria-label="Example icon-button with share icon">
+      <mat-icon>login</mat-icon>
+    </button>
   </mat-toolbar>
+</div>
+
+<div>
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <!-- <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button> -->
+      <button mat-raised-button
+      [routerLink]="['/info']">
+Product Information
+      </button>
+    </mat-drawer>
+  
+    <!-- <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+      </button>
+    </div> -->
+    <app-dashboard></app-dashboard>
+  
+  </mat-drawer-container>
 </div>

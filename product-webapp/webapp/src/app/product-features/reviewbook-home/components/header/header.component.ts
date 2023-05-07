@@ -6,19 +6,19 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   
-  @Input() products: any[];
-  constructor(private router: Router) {
-    this.products=[];
-   }
+  // @Input() products: any[];
+  // constructor(private router: Router) {
+  //   this.products=[];
+  //  }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  // }
 
-  onClickImg(event){
-    console.log(event)
-    this.router.navigateByUrl(`/review/${event.productId}`);
-  }
+  // onClickImg(event){
+  //   console.log(event)
+  //   this.router.navigateByUrl(`/review/${event.productId}`);
+  // }
 }

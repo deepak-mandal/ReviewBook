@@ -1,6 +1,6 @@
 <div class="page-style">
   <div class="custom-cards">
-    <div *ngFor="let item of products | paginate: { itemsPerPage: 20, currentPage: page }" class="custom-card">
+    <div *ngFor="let item of products | paginate: { itemsPerPage: 15, currentPage: page }" class="custom-card">
       <mat-card (click)="onReview(item.productId)">
           <mat-card-header>
             <mat-card-title>

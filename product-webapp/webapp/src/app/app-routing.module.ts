@@ -7,11 +7,16 @@ import { DashboardComponent } from './product-features/reviewbook-home/component
 import { ReviewsComponent } from './product-features/review-management/components/reviews/reviews.component';
 import { AboutReviewbookPlatformComponent } from './product-features/reviewbook-home/components/about-reviewbook-platform/about-reviewbook-platform.component';
 import { ManageProfileComponent } from './product-features/user-management/components/manage-profile/manage-profile.component';
+import { NavigationComponent } from './product-features/reviewbook-home/components/navigation/navigation.component';
 
 
 const routes: Routes = [
   {
     path: '',
+    component: NavigationComponent,
+  },
+  {
+    path: 'info',
     component: AboutReviewbookPlatformComponent,
   },
   {
@@ -22,10 +27,10 @@ const routes: Routes = [
     path: 'register',
     component: RegistrationComponent,
   },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  // },
   {
     path: 'profile',
     component: ManageProfileComponent,
@@ -34,10 +39,10 @@ const routes: Routes = [
     path: 'products',
     component: ManageProductComponent,
   },
-  {
-    path: 'about-reviewbook-platform',
-    component: AboutReviewbookPlatformComponent,
-  },
+  // {
+  //   path: 'about-reviewbook-platform',
+  //   component: AboutReviewbookPlatformComponent,
+  // },
   {
     path: 'review/:productId',
     component: ReviewsComponent
