@@ -5,7 +5,6 @@
 </h1>
 <div mat-dialog-content>
   <form [formGroup]="reactiveForm">
-    <hr>
     <div>
       <div class="mb-3">
         <label for="productName" class="form-label">Product Name</label>
@@ -27,7 +26,7 @@
       </div>
       <div class=" form-label fileInputProfileWrap">
         <label for="productImage" class="form-label">Product Image</label><br>
-        <input type="file" accept="image/*" (change)="fileChangeEvent($event)" class="fileInputProfile" />
+        <input type="file" accept="image/*" id="productImage" (change)="fileChangeEvent($event)" class="fileInputProfile" />
       </div>
       <div class="row" formArrayName="specs">
         <div class="col">

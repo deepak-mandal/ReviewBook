@@ -29,7 +29,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { AddNewProductDialogComponent } from './product-management/components/add-new-product-dialog/add-new-product-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdateProductDialogComponent } from './product-management/components/update-product-dialog/update-product-dialog.component';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,8 @@ import { UpdateProductDialogComponent } from './product-management/components/up
     NgxPaginationModule,
     MatTabsModule,
     AgGridModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
     
 
   ],

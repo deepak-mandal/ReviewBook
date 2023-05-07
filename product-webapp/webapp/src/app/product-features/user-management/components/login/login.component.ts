@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
  
   isLogedinError:boolean=false;
-
+  hide = true;
 
   ngOnInit(): void {
     

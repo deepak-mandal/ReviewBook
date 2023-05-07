@@ -5,6 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Products } from '../../models/products';
 import { ProductsService } from '../../services/products.service';
+import {IProductEntity} from '../../types/product-management.interface'
+import {ProductEntity} from '../../models/product-entity'
 
 @Component({
   selector: 'app-update-product-dialog',
@@ -16,6 +18,9 @@ export class UpdateProductDialogComponent implements OnInit {
   selectedFile!: File;
   isImageSaved: boolean = false;
   cardImageBase64: string | undefined;
+
+  productData: IProductEntity
+
   //for two way data binding
   productObj = {
     productId: 0,
@@ -45,6 +50,8 @@ export class UpdateProductDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data)
     this.editProduct(this.data.product);
+
+    this.productData = new ProductEntity(this.data.product)
   }
 
   isEdit: boolean = false;
