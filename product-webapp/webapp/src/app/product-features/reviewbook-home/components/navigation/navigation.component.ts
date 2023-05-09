@@ -30,9 +30,10 @@ export class NavigationComponent implements OnInit {
     sessionStorage.removeItem('authorization');
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('role');
-    this.router.navigate(['/login']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/login'])
+    // .then(() => {
+    //   window.location.reload();
+    // });
   }
 
 

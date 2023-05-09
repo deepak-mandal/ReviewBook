@@ -7,7 +7,7 @@
     </button>
     <span [routerLink]="['']">ReviewBook</span>
     <span class="example-spacer"></span>
-    <button mat-button [matMenuTriggerFor]="profile">Profile</button>
+    <button mat-button [matMenuTriggerFor]="profile" *ngIf="authService.isLoggedIn$ | async">Profile</button>
     <mat-menu #profile="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="edit_profile">Manage Profile</button>
       <button mat-menu-item [matMenuTriggerFor]="my_products" *ngIf="isProductOwner">Manage Products</button>
@@ -44,10 +44,23 @@
       <button (click)="showFiller = !showFiller" mat-raised-button>
         Toggle extra text
       </button> -->
-      <button mat-raised-button
+  
+        <a 
       [routerLink]="['/info']">
-Product Information
-      </button>
+<mat-card>Product Information</mat-card>
+    </a>
+    
+      <mat-divider></mat-divider>
+  <a 
+  [routerLink]="['/products']">
+<mat-card>My Products</mat-card>
+    </a>
+  <mat-divider></mat-divider>
+  <a 
+  [routerLink]="['/profile']">
+ <mat-card> My Profile</mat-card>
+  </a>
+<mat-divider></mat-divider>
     </mat-drawer>
   
     <!-- <div class="example-sidenav-content">
@@ -55,7 +68,8 @@ Product Information
         Toggle sidenav
       </button>
     </div> -->
-    <app-dashboard></app-dashboard>
+    <!-- <app-dashboard></app-dashboard> -->
+    <router-outlet></router-outlet>
   
   </mat-drawer-container>
 </div>

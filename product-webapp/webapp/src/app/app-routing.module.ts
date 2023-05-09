@@ -13,7 +13,7 @@ import { NavigationComponent } from './product-features/reviewbook-home/componen
 const routes: Routes = [
   {
     path: '',
-    component: NavigationComponent,
+    component: DashboardComponent,
   },
   {
     path: 'info',
