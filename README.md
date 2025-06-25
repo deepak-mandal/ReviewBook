@@ -21,18 +21,18 @@ Ports
 
 
 Software Requirement:-
-JDK v11 (run .msi file) - https://www.oracle.com/in/java/technologies/downloads/
-Eclipse IDE - https://eclipseide.org/
-MySQL, PATH setup - https://dev.mysql.com/downloads/installer/
-MongoDB, PATH setup - https://www.mongodb.com/try/download/community
+- JDK v11 (run .msi file) - https://www.oracle.com/in/java/technologies/downloads/
+- Eclipse IDE - https://eclipseide.org/
+- MySQL, PATH setup - https://dev.mysql.com/downloads/installer/
+- MongoDB, PATH setup - https://www.mongodb.com/try/download/community
 
-Node (run .msi file) - https://nodejs.org/en/download
-TypeScript v4.5 (npm install -g typescript) - https://www.typescriptlang.org/download/
-Angular v13 (npm install -g @angular/cli) - https://angular.dev/installation
-Visual Studio Code IDE - https://code.visualstudio.com/
+- Node (run .msi file) - https://nodejs.org/en/download
+- TypeScript v4.5 (npm install -g typescript) - https://www.typescriptlang.org/download/
+- Angular v13 (npm install -g @angular/cli) - https://angular.dev/installation
+- Visual Studio Code IDE - https://code.visualstudio.com/
 
-MySQL Script
+- MySQL Script
 
-MongoDB Script
+- MongoDB Script
 
 
