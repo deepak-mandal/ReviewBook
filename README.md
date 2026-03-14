@@ -7,6 +7,14 @@ Domain: eCommerce => Reviews and ratings
 ![user_view](/img/arch.png)
 ![user_view](/img/rb.png)
 
+<h1>High-level Features</h1>
+<li>As a guest-user, I must be able see the landing page which displays basic information about the platform; and able to See all the Available Products on the platform</li>
+<li>As a guest user, I must be able to register myself on the platform as a regular user or as a product owner</li>
+<li>As a registered user, I must be able to login using correct credentials.</li>
+<li>As a logged-in user, I must be able to view and edit my profile.</li>
+<li>As a Product Owner, I must be able to Add new Product details, Update my added products, Delete my existing Product & see my added product on the platform.</li>
+<li>As a logged-in user, I must be able to see (others) review, give own review and rating & like other's review comments on the products</li>
+
 <h1>Architecture Diagram</h1>
 ![Arch-rb](https://user-images.githubusercontent.com/55249860/219939915-c8d2d60a-54f1-46f6-a8f7-dafd446bdb4f.png)
 
