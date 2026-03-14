@@ -1,12 +1,8 @@
-Ports
-- Eureka Server: 8076
-- Config Server: 8888
-- API Gateway: 8086
-- Login Service: 8080
-- Product Management: 8081
-- User Registration Service: 8082
-- Product Recommendation: 8083
-- Review Management: 8084
+ReviewBook - Product Overview
+
+Content: Architecture Diagram, Technical overview, High-level Features
+<br/>
+Domain: eCommerce => Reviews and ratings
 
 ![user_view](/img/arch.png)
 ![user_view](/img/rb.png)
@@ -35,4 +31,12 @@ Software Requirement:-
 
 - MongoDB Script
 
-
+Ports
+- Eureka Server: 8076
+- Config Server: 8888
+- API Gateway: 8086
+- Login Service: 8080
+- Product Management: 8081
+- User Registration Service: 8082
+- Product Recommendation: 8083
+- Review Management: 8084
