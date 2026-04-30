@@ -1,3 +1,9 @@
+<h1>ReviewBook Platform – <b><i>Java, Spring Boot, MySQL, Angular</i></b></h1> 
+<li>Designed a single page application backed by microservices architecture where user can provide reviews and ratings on products.</li>
+<li>Built Restful APIs that involves CRUD operations, JWT authentication, microservices communication using RabbitMQ; Docker.</li>
+
+
+<hr/>
 ReviewBook - Product Overview
 
 Content: Architecture Diagram, Technical overview, High-level Features
